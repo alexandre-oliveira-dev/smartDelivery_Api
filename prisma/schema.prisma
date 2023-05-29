@@ -14,7 +14,7 @@ model Companies {
   id               String   @id @unique @default(uuid())
   name_company     String
   cnpj             String?
-  payments_methods String[]
+  payments_methods String[] 
   imgProfile       String?
   isSubiscriber    Boolean  @default(false)
   phone            String
