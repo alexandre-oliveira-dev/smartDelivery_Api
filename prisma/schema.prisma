@@ -22,7 +22,11 @@ model Companies {
   password         String
   address          String
 
-  Menu MenuOfCompanies[]
+  created_at DateTime          @default(now())
+  Menu       MenuOfCompanies[]
+  Orders     Orders[]
+
+  @@map("companies")
 }
 
 model MenuOfCompanies {
@@ -34,4 +38,33 @@ model MenuOfCompanies {
   amount        String?
   dataCompanies Companies @relation(fields: [companiesId], references: [id])
   companiesId   String
+  created_at    DateTime  @default(now())
+
+  @@map("menuofcompanies")
+}
+
+model Clients {
+  id         String   @id @unique @default(uuid())
+  name       String
+  email      String
+  password   String
+  phone      Int
+  created_at DateTime @default(now())
+  Orders     Orders[]
+
+  @@map("clients")
+}
+
+model Orders {
+  id             String    @id @unique @default(uuid())
+  amount         String
+  payment_method String
+  order          String[]
+  created_at     DateTime  @default(now())
+  dataCompanies  Companies @relation(fields: [companiesId], references: [id])
+  companiesId    String
+  client         Clients   @relation(fields: [clientsId], references: [id])
+  clientsId      String
+
+  @@map("orders")
 }
