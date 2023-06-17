@@ -14,7 +14,7 @@ model Companies {
   id               String   @id @unique @default(uuid())
   name_company     String
   cnpj             String?
-  payments_methods String[] 
+  payments_methods String[]
   imgProfile       String?
   isSubiscriber    Boolean  @default(false)
   phone            String
@@ -67,4 +67,11 @@ model Orders {
   clientsId      String
 
   @@map("orders")
+}
+
+model Session {
+  id    String @id @unique @default(uuid())
+  email String
+  name_company String?
+  created_at DateTime @default(now())
 }

@@ -1,2 +1,2 @@
 import { app } from "./app.service";
-app.listen(3000, () => console.log("online"));
+app.listen(process.env.PORT, () => console.log("online"));
