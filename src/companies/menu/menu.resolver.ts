@@ -6,7 +6,7 @@ const service = new MenuService();
 
 class MenuResolver {
   async create(req: Request, res: Response) {
-    const { title, companiesId, price, amount, weight,categoria }: Prisma.MenuOfCompaniesCreateManyInput =
+    const { title, companiesId, price, amount, weight,categoria,description }: Prisma.MenuOfCompaniesCreateManyInput =
       req.body;
 
     const request = await service.create({
@@ -15,7 +15,8 @@ class MenuResolver {
       amount,
       companiesId,
       weight,
-      categoria
+      categoria,
+      description
     });
     return res.json(request);
   }
@@ -39,12 +40,12 @@ class MenuResolver {
   }
   async update(req: Request, res: Response) {
     const {
-      data: { categoria, amount, price, title, weight },
+      data: { categoria, amount, price, title, weight,description },
     }: Prisma.MenuOfCompaniesUpdateManyArgs = req.body;
     const { id } = req.params;
 
     const response = await service.update(id, {
-      data: { categoria, amount, price, title, weight },
+      data: { categoria, amount, price, title, weight,description },
     });
     return res.json(response);
   }
