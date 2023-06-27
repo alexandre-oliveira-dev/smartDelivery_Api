@@ -9,6 +9,7 @@ class MenuService {
     amount,
     weight,
     companiesId,
+    description
   }: Prisma.MenuOfCompaniesCreateManyInput) {
     const create = await prismaClient.menuOfCompanies.createMany({
       data: {
@@ -18,6 +19,7 @@ class MenuService {
         categoria,
         companiesId,
         weight,
+        description
       },
     });
     return create;
@@ -49,7 +51,7 @@ class MenuService {
 
   }
 
-  async update(id:string, {data:{categoria,price,title,amount,weight}}:Prisma.MenuOfCompaniesUpdateManyArgs){
+  async update(id:string, {data:{categoria,price,title,amount,weight,description}}:Prisma.MenuOfCompaniesUpdateManyArgs){
       const update = await prismaClient.menuOfCompanies.update({
         where:{
             id
@@ -59,7 +61,8 @@ class MenuService {
             categoria,
             price,
             amount,
-            weight
+            weight,
+            description
         }
       })
       return update;
