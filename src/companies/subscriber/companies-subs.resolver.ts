@@ -24,7 +24,7 @@ class CompaniesSubsResolver {
   }
 
   async updateCompanie(req: Request, res: Response) {
-    const { address, cnpj, email, name_company, password, payments_methods, phone, isSubiscriber } =
+    const { address, cnpj, email, name_company, password, payments_methods, phone, isSubiscriber,backgroundColor,imgProfile } =
       req.body;
     const { id } = req.params;
 
@@ -38,6 +38,8 @@ class CompaniesSubsResolver {
         payments_methods,
         phone,
         isSubiscriber,
+        backgroundColor,
+        imgProfile
       },
     });
     return res.json(execute).status(200);

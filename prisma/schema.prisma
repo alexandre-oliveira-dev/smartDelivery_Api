@@ -16,6 +16,7 @@ model Companies {
   cnpj             String?
   payments_methods String[]
   imgProfile       String?
+  backgroundColor  String?
   isSubiscriber    Boolean  @default(false)
   phone            String
   email            String
@@ -36,7 +37,7 @@ model MenuOfCompanies {
   price         Int
   weight        String?
   amount        String?
-  dataCompanies Companies @relation(fields: [companiesId], references: [id])
+  dataCompanies Companies @relation(fields: [companiesId], references: [id], onDelete: Cascade)
   companiesId   String
   description   String
   created_at    DateTime  @default(now())
@@ -62,19 +63,18 @@ model Orders {
   payment_method String
   order          String[]
   created_at     DateTime  @default(now())
-  dataCompanies  Companies @relation(fields: [companiesId], references: [id])
+  dataCompanies  Companies @relation(fields: [companiesId], references: [id], onDelete: Cascade)
   companiesId    String
-  client         Clients   @relation(fields: [clientsId], references: [id])
+  client         Clients   @relation(fields: [clientsId], references: [id], onDelete: Cascade)
   clientsId      String
 
   @@map("orders")
 }
 
 model Session {
-  id    String @id @unique @default(uuid())
-  email String
+  id           String   @id @unique @default(uuid())
+  email        String
   name_company String?
-  companyId String?
-  created_at DateTime @default(now())
-
+  companyId    String?
+  created_at   DateTime @default(now())
 }

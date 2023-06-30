@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { prismaClient } from "../../prisma/prismaClient";
 
 export type SubscriberCredencials = {
@@ -66,8 +67,9 @@ class CompaniesSubsService {
         password,
         payments_methods,
         phone,
+        backgroundColor
       },
-    }: SubscriberCredencials,
+    }: Prisma.CompaniesUpdateManyArgs,
     
   ) {
     const updatecompany = await prismaClient.companies.update({
@@ -79,6 +81,7 @@ class CompaniesSubsService {
         cnpj,
         email,
         imgProfile,
+        backgroundColor,
         isSubiscriber,
         name_company,
         password,
