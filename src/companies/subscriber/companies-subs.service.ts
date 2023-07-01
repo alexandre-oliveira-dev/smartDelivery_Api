@@ -50,6 +50,9 @@ class CompaniesSubsService {
         isSubiscriber,
         payments_methods,
       },
+      select:{
+        password:false
+      }
     });
     return execute;
   }
@@ -88,6 +91,9 @@ class CompaniesSubsService {
         payments_methods,
         phone,
       },
+      select:{
+        password:false
+      }
     });
     return updatecompany;
   }

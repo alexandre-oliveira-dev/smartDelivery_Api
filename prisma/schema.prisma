@@ -72,9 +72,11 @@ model Orders {
 }
 
 model Session {
-  id           String   @id @unique @default(uuid())
-  email        String
-  name_company String?
-  companyId    String?
-  created_at   DateTime @default(now())
+  id              String  @id @unique @default(uuid())
+  email           String
+  name_company    String?
+  companyId       String?
+  backgroundColor String?
+
+  created_at DateTime @default(now())
 }

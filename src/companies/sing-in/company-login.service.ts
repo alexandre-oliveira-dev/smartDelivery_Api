@@ -21,9 +21,9 @@ class SinginCompanyService {
       data: {
         email: email,
         name_company: isUser.name_company,
-        companyId: isUser?.id
+        companyId: isUser?.id,
+        backgroundColor: isUser?.backgroundColor
       },
-
     });
     return registerSingin;
   }
