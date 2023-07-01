@@ -42,7 +42,7 @@ class CompaniesSubsResolver {
         imgProfile
       },
     });
-    return res.json(execute).status(200);
+    return res.json().status(200);
   }
 
   async getAll(req: Request, res: Response) {

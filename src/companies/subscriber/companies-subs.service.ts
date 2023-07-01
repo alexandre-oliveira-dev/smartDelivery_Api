@@ -91,9 +91,6 @@ class CompaniesSubsService {
         payments_methods,
         phone,
       },
-      select:{
-        password:false
-      }
     });
     return updatecompany;
   }
