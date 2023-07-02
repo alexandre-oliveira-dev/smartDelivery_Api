@@ -34,7 +34,7 @@ model MenuOfCompanies {
   id            String    @id @unique @default(uuid())
   title         String
   categoria     String?
-  price         Float
+  price         String
   weight        String?
   amount        String?
   dataCompanies Companies @relation(fields: [companiesId], references: [id], onDelete: Cascade)
