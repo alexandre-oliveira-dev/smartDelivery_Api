@@ -40,7 +40,7 @@ class MenuService {
   async findUnique(param:string) {
     const findunique = await prismaClient.menuOfCompanies.findFirst({
       where: {
-        OR: [{ companiesId:param }, { title: { contains: param } }],
+        OR: [{ categoria:{contains:param} }, { title: { contains: param } }],
       },
     });
     return findunique;
