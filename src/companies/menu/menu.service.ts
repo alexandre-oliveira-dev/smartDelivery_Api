@@ -25,12 +25,13 @@ class MenuService {
     return create;
   }
 
-  async findMany(companiesId: string,param:string | any) {
+  async findMany(companiesId: string,param:string | any,take:number) {
     const findmany = await prismaClient.menuOfCompanies.findMany({
       where: {
         companiesId,
         OR: [{ categoria:{contains:param} }, { title: { contains: param } }],
       },
+      take
     });
     if (!findmany) {
       throw new Error("not find");
