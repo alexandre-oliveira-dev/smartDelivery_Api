@@ -28,8 +28,9 @@ class MenuResolver {
     return res.json(response);
   }
   async findUnique(req: Request, res: Response) {
-    const { param} = req.params;
-    const response = await service.findUnique(param);
+    const { companiesId} = req.params;
+    const {param} = req.query
+    const response = await service.findUnique(param,companiesId);
     return res.json(response);
   }
   async del(req: Request, res: Response) {

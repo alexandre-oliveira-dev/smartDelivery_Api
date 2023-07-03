@@ -37,9 +37,10 @@ class MenuService {
     return findmany;
   }
 
-  async findUnique(param:string) {
+  async findUnique(param:string | any,companiesId:string) {
     const findunique = await prismaClient.menuOfCompanies.findFirst({
       where: {
+        companiesId,
         OR: [{ categoria:{contains:param} }, { title: { contains: param } }],
       },
     });
