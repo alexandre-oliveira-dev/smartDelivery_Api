@@ -25,26 +25,17 @@ class MenuService {
     return create;
   }
 
-  async findMany(companiesId: string) {
+  async findMany(companiesId: string,param:string | any) {
     const findmany = await prismaClient.menuOfCompanies.findMany({
       where: {
         companiesId,
+        OR: [{ categoria:{contains:param} }, { title: { contains: param } }],
       },
     });
     if (!findmany) {
       throw new Error("not find");
     }
     return findmany;
-  }
-
-  async findUnique(param:string | any,companiesId:string) {
-    const findunique = await prismaClient.menuOfCompanies.findFirst({
-      where: {
-        companiesId,
-        OR: [{ categoria:{contains:param} }, { title: { contains: param } }],
-      },
-    });
-    return findunique;
   }
 
   async del(id: string) {

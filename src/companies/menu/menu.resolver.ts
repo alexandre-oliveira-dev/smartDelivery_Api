@@ -23,16 +23,12 @@ class MenuResolver {
 
   async findMany(req: Request, res: Response) {
     const { companiesId } = req.params;
-
-    const response = await service.findMany(companiesId);
-    return res.json(response);
-  }
-  async findUnique(req: Request, res: Response) {
-    const { companiesId} = req.params;
     const {param} = req.query
-    const response = await service.findUnique(param,companiesId);
+
+    const response = await service.findMany(companiesId,param);
     return res.json(response);
   }
+ 
   async del(req: Request, res: Response) {
     const { id } = req.params;
 
