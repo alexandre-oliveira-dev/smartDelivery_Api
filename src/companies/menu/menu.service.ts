@@ -32,7 +32,8 @@ class MenuService {
         OR: [{ categoria:{contains:param} }, { title: { contains: param } }],
       },
       take,
-      skip
+      skip,
+      orderBy:{id:'desc'}
     });
     if (!findmany) {
       throw new Error("not find");
