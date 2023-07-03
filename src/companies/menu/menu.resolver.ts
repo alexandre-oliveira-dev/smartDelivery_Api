@@ -23,9 +23,9 @@ class MenuResolver {
 
   async findMany(req: Request, res: Response) {
     const { companiesId } = req.params;
-    const {param,take} = req.query
+    const {param,take,skip} = req.query
 
-    const response = await service.findMany(companiesId,param,Number(take));
+    const response = await service.findMany(companiesId,param,Number(take),Number(skip));
     return res.json(response);
   }
  
