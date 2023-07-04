@@ -46,7 +46,11 @@ class OrdersService {
       where: {
         companiesId,
       },
+      include:{
+        client:true
+      }
     });
+    
     return find;
   }
 
