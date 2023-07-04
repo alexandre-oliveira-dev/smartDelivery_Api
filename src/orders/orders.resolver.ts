@@ -44,7 +44,7 @@ class OrdersResolver {
   async findAllOrdersFinished(req: Request, res: Response){
     const {status,companiesId} = req.query
 
-    const find = await service.findOrder(String(status),String(companiesId))
+    const find = await service.findAllOrdersFinished((status as any),String(companiesId))
     return res.json({...find, total:find.length})
   }
   async del(req: Request, res: Response){
