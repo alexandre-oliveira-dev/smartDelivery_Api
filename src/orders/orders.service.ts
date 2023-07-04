@@ -47,7 +47,13 @@ class OrdersService {
         companiesId,
       },
       include:{
-        client:true
+        client:{
+          select:{
+            name:true,
+            email:true,
+            phone:true,
+          }
+        }
       }
     });
     
