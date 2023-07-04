@@ -50,9 +50,6 @@ class CompaniesSubsService {
         isSubiscriber,
         payments_methods,
       },
-      select:{
-        password:false
-      }
     });
     return execute;
   }
