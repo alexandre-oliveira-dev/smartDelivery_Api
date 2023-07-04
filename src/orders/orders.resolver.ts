@@ -37,8 +37,8 @@ class OrdersResolver {
   }
 
   async findOrder(req: Request, res: Response){
-    const {clientsId,companiesId} = req.query
-    const find = await service.findOrder(String(clientsId),String(companiesId))
+    const {companiesId} = req.query
+    const find = await service.findOrder(String(companiesId))
     return res.json(find)
   }
   async findAllOrdersFinished(req: Request, res: Response){

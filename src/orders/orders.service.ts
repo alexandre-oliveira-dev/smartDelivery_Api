@@ -41,10 +41,9 @@ class OrdersService {
     return update;
   }
 
-  async findOrder(clientsId: string, companiesId: string) {
+  async findOrder(companiesId: string) {
     const find = await prismaClient.orders.findMany({
       where: {
-        clientsId,
         companiesId,
       },
     });
