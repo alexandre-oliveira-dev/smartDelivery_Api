@@ -1,6 +1,7 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,6 +10,8 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+
 
 model Companies {
   id               String   @id @unique @default(uuid())
@@ -61,6 +64,7 @@ model Orders {
   id             String    @id @unique @default(uuid())
   amount         String
   payment_method String
+  status         String 
   order          String[]
   created_at     DateTime  @default(now())
   dataCompanies  Companies @relation(fields: [companiesId], references: [id], onDelete: Cascade)

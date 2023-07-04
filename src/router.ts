@@ -2,6 +2,7 @@ import { Router } from "express";
 import { CompaniesSubsResolver } from "./companies/subscriber/companies-subs.resolver";
 import { SinginCompanyResolver } from "./companies/sing-in/company-login.resolver";
 import { MenuResolver } from "./companies/menu/menu.resolver";
+import { OrdersResolver } from "./orders/orders.resolver";
 
 export const route = Router();
 
@@ -17,3 +18,8 @@ route.post('/createmenu', new MenuResolver().create)
 route.get('/getallmenu/:companiesId', new MenuResolver().findMany)
 route.delete('/deletemenu/:id', new MenuResolver().del)
 route.put('/updatemenu/:id', new MenuResolver().update)
+route.post('/orders', new OrdersResolver().create)
+route.put('/orders/:id', new OrdersResolver().update)
+route.get('/findorders', new OrdersResolver().findOrder)
+route.get('/findallorders', new OrdersResolver().findAllOrdersFinished)
+route.delete('/deleteorder', new OrdersResolver().del)
