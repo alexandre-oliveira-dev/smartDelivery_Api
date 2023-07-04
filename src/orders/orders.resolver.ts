@@ -13,7 +13,8 @@ class OrdersResolver {
       payment_method,
       status,
       order,
-      amoutMoney
+      amoutMoney,
+      address
     }: Prisma.OrdersCreateManyInput = req.body;
 
     const create = await service.create({
@@ -23,7 +24,8 @@ class OrdersResolver {
       payment_method,
       status,
       order,
-      amoutMoney
+      amoutMoney,
+      address
     });
     return res.json(create);
   }
