@@ -66,6 +66,7 @@ model Orders {
   payment_method String
   status         String 
   order          String[]
+  amoutMoney     String
   created_at     DateTime  @default(now())
   dataCompanies  Companies @relation(fields: [companiesId], references: [id], onDelete: Cascade)
   companiesId    String

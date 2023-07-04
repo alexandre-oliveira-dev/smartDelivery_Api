@@ -10,6 +10,7 @@ class OrdersService {
     payment_method,
     status,
     order,
+    amoutMoney
   }: Prisma.OrdersCreateManyInput) {
     const createMany = await prismaClient.orders.createMany({
       data: {
@@ -19,6 +20,7 @@ class OrdersService {
         payment_method,
         status,
         order,
+        amoutMoney
       },
     });
     return createMany;
