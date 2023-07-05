@@ -3,6 +3,7 @@ import { CompaniesSubsResolver } from "./companies/subscriber/companies-subs.res
 import { SinginCompanyResolver } from "./companies/sing-in/company-login.resolver";
 import { MenuResolver } from "./companies/menu/menu.resolver";
 import { OrdersResolver } from "./orders/orders.resolver";
+import { OrdersFinishedResolver } from "./ordersFinished/ordersFinished.resolver";
 
 export const route = Router();
 
@@ -23,3 +24,5 @@ route.put('/orders/:id', new OrdersResolver().update)
 route.get('/findorders', new OrdersResolver().findOrder)
 route.get('/findallorders', new OrdersResolver().findAllOrdersFinished)
 route.delete('/deleteorder', new OrdersResolver().del)
+route.post('/ordersFinished', new OrdersFinishedResolver().create)
+route.get('/ordersFinished/:companyid', new OrdersFinishedResolver().find)

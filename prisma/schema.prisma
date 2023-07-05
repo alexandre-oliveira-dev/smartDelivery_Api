@@ -1,7 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,8 +9,6 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
-
 
 model Companies {
   id               String   @id @unique @default(uuid())
@@ -64,7 +61,7 @@ model Orders {
   id             String    @id @unique @default(uuid())
   amount         String
   payment_method String
-  status         String 
+  status         String
   order          String[]
   amoutMoney     String
   address        String
@@ -85,4 +82,13 @@ model Session {
   backgroundColor String?
 
   created_at DateTime @default(now())
+}
+
+model OrdersFinished {
+  id           String   @id @unique @default(uuid())
+  date         DateTime
+  amountOrders Int
+  amountvalue  Int
+  companyId    String
+  created_at   DateTime @default(now())
 }
