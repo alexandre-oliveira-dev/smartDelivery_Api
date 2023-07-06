@@ -86,7 +86,7 @@ model Session {
 
 model OrdersFinished {
   id           String   @id @unique @default(uuid())
-  date         DateTime
+  date         String
   amountOrders Int
   amountvalue  Int
   companyId    String
