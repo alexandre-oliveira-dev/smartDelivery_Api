@@ -80,6 +80,7 @@ model Session {
   name_company    String?
   companyId       String?
   backgroundColor String?
+  imgProfile      String?
 
   created_at DateTime @default(now())
 }

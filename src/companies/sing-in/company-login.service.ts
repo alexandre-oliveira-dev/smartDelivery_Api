@@ -22,7 +22,8 @@ class SinginCompanyService {
         email: email,
         name_company: isUser.name_company,
         companyId: isUser?.id,
-        backgroundColor: isUser?.backgroundColor
+        backgroundColor: isUser?.backgroundColor,
+        imgProfile: isUser?.imgProfile,
       },
     });
     return registerSingin;

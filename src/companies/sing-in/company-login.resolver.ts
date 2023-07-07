@@ -13,7 +13,7 @@ class SinginCompanyResolver {
 
   async logout(req: Request, res: Response) {
     const { id } = req.params;
-    const logout = await service.singout(id);
+    await service.singout(id);
 
     return res.json({ message: "logout success" });
   }
