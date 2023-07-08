@@ -38,9 +38,7 @@ class OrdersResolver {
     return res.json(update);
   }
   async updateMany(req: Request, res: Response) {
-    const { id } = req.params;
-
-    await service.updateManyByStatus(id);
+    await service.updateManyByStatus();
     return res.json().status(200);
   }
 

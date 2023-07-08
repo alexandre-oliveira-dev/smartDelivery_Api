@@ -43,10 +43,9 @@ class OrdersService {
     return update;
   }
 
-  async updateManyByStatus(id: string) {
+  async updateManyByStatus() {
     const updateMany = prismaClient.orders.updateMany({
       where: {
-        id,
         status: "entrega",
       },
       data: {
