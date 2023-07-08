@@ -10,7 +10,7 @@ class OrdersFinishedResolver {
       req.body;
     const response = await service.create({ amountOrders, amountvalue, companyId, date });
     if (!response) {
-      return res.json().status(500);
+      return res.end().status(500)
     }
     return res.json().status(200);
   }

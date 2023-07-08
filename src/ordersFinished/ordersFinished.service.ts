@@ -13,7 +13,7 @@ class OrdersFinished {
         date,
       },
     });
-    if (orderEcxists) return null;
+    if (orderEcxists) throw new Error("finalização de expediente ja realizado");
     const create = await prismaClient.ordersFinished.create({
       data: {
         amountOrders,
