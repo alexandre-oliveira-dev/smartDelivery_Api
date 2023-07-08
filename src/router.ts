@@ -21,7 +21,7 @@ route.delete('/deletemenu/:id', new MenuResolver().del)
 route.put('/updatemenu/:id', new MenuResolver().update)
 route.post('/orders', new OrdersResolver().create)
 route.put('/orders/:id', new OrdersResolver().update)
-route.put("/allordersbystatus/:id", new OrdersResolver().updateMany);
+route.put("/allordersbystatus", new OrdersResolver().updateMany);
 route.get('/findorders', new OrdersResolver().findOrder)
 route.get('/findallorders', new OrdersResolver().findAllOrdersFinished)
 route.delete('/deleteorder', new OrdersResolver().del)
