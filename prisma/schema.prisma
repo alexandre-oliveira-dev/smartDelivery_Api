@@ -92,4 +92,5 @@ model OrdersFinished {
   amountvalue  Int
   companyId    String
   created_at   DateTime @default(now())
+
 }
