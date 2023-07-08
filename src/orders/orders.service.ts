@@ -11,7 +11,7 @@ class OrdersService {
     status,
     order,
     amoutMoney,
-    address
+    address,
   }: Prisma.OrdersCreateManyInput) {
     const createMany = await prismaClient.orders.createMany({
       data: {
@@ -22,7 +22,7 @@ class OrdersService {
         status,
         order,
         amoutMoney,
-        address
+        address,
       },
     });
     return createMany;
@@ -43,33 +43,46 @@ class OrdersService {
     return update;
   }
 
+  async updateManyByStatus(id: string) {
+    const updateMany = prismaClient.orders.updateMany({
+      where: {
+        id,
+        status: "entrega",
+      },
+      data: {
+        status: "finalizado",
+      },
+    });
+    return updateMany;
+  }
+
   async findOrder(companiesId: string) {
     const find = await prismaClient.orders.findMany({
       where: {
         companiesId,
       },
-      include:{
-        client:{
-          select:{
-            name:true,
-            email:true,
-            phone:true,
-          }
-        }
-      }
+      include: {
+        client: {
+          select: {
+            name: true,
+            email: true,
+            phone: true,
+          },
+        },
+      },
     });
-    
+
     return find;
   }
 
-  async findAllOrdersFinished({status}:OrdersStatus,companiesId:string ){
-       const allOrdersFinished = await prismaClient.orders.findMany({
-        where:{
-            companiesId,
-            status:status.finalizado
-        },
-       })
-       return allOrdersFinished;
+  async findAllOrdersFinished({ status }: OrdersStatus, companiesId: string) {
+    const allOrdersFinished = await prismaClient.orders.findMany({
+      where: {
+        companiesId,
+        status: status.finalizado,
+      },
+    });
+    return allOrdersFinished;
   }
 
   async deleteOrder(id: string) {

@@ -14,7 +14,7 @@ class OrdersResolver {
       status,
       order,
       amoutMoney,
-      address
+      address,
     }: Prisma.OrdersCreateManyInput = req.body;
 
     const create = await service.create({
@@ -25,34 +25,40 @@ class OrdersResolver {
       status,
       order,
       amoutMoney,
-      address
+      address,
     });
     return res.json(create);
   }
 
-  async update(req: Request, res: Response){
-    const {status} = req.body
-    const {id} = req.params
+  async update(req: Request, res: Response) {
+    const { status } = req.body;
+    const { id } = req.params;
 
-    const update = await service.updateOrder(id,status)
-    return res.json(update)
+    const update = await service.updateOrder(id, status);
+    return res.json(update);
+  }
+  async updateMany(req: Request, res: Response) {
+    const { id } = req.params;
+
+    await service.updateManyByStatus(id);
+    return res.json().status(200);
   }
 
-  async findOrder(req: Request, res: Response){
-    const {companiesId} = req.query
-    const find = await service.findOrder(String(companiesId))
-    return res.json(find)
+  async findOrder(req: Request, res: Response) {
+    const { companiesId } = req.query;
+    const find = await service.findOrder(String(companiesId));
+    return res.json(find);
   }
-  async findAllOrdersFinished(req: Request, res: Response){
-    const {status,companiesId} = req.query
+  async findAllOrdersFinished(req: Request, res: Response) {
+    const { status, companiesId } = req.query;
 
-    const find = await service.findAllOrdersFinished((status as any),String(companiesId))
-    return res.json({...find, total:find.length})
+    const find = await service.findAllOrdersFinished(status as any, String(companiesId));
+    return res.json({ ...find, total: find.length });
   }
-  async del(req: Request, res: Response){
-    const {id} = req.params
-    await service.deleteOrder(id)
-    return res.status(200)
+  async del(req: Request, res: Response) {
+    const { id } = req.params;
+    await service.deleteOrder(id);
+    return res.status(200);
   }
 }
 export { OrdersResolver };
