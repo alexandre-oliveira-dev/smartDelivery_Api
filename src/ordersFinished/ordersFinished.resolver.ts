@@ -8,7 +8,10 @@ class OrdersFinishedResolver {
   async create(req: Request, res: Response) {
     const { amountOrders, amountvalue, companyId, date }: Prisma.OrdersFinishedCreateManyInput =
       req.body;
-    await service.create({ amountOrders, amountvalue, companyId, date });
+    const response = await service.create({ amountOrders, amountvalue, companyId, date });
+    if (!response) {
+      return res.json().status(500);
+    }
     return res.json().status(200);
   }
 
