@@ -16,9 +16,9 @@ class OrdersFinishedResolver {
   }
 
   async find(req: Request, res: Response) {
-    const { companyId } = req.params;
+    const { companyId } = req.query;
 
-    const response = await service.findAll(companyId);
+    const response = await service.findAll(String(companyId));
     return res.json(response);
   }
 }
