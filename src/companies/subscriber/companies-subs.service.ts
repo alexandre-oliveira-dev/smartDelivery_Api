@@ -97,9 +97,9 @@ class CompaniesSubsService {
     return getall;
   }
   async getForArgs(args: string) {
-    const getall = await prismaClient.companies.findMany({
+    const getall = await prismaClient.companies.findUnique({
       where: {
-        OR: [{ cnpj: args }, { name_company: args }],
+        id: args,
       },
     });
 
