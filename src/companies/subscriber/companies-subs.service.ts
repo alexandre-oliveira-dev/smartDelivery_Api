@@ -1,6 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { prismaClient } from "../../prisma/prismaClient";
 import { AES } from "crypto-js";
+import CryptoJS from "crypto-js";
 
 export type SubscriberCredencials = {
   data: {
@@ -77,9 +78,10 @@ class CompaniesSubsService {
       where: { id },
     });
 
-    const descriptografy = AES.decrypt(passwordVerify, "");
-    if (String(descriptografy) !== String(currentPassword?.password))
-      throw new Error("password invalid");
+    const decryptedBytes = AES.decrypt(passwordVerify, "");
+    const decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
+
+    if (decryptedString !== String(currentPassword?.password)) throw new Error("password invalid");
     const updatecompany = await prismaClient.companies.update({
       where: {
         id: id,

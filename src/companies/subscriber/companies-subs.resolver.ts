@@ -27,9 +27,8 @@ class CompaniesSubsResolver {
     const { address, cnpj, email, name_company, password, payments_methods, phone, isSubiscriber,backgroundColor,imgProfile } =
       req.body;
     const { id } = req.params;
-    const { passwordVerify } = req.headers;
 
-    const execute = await service.updateCompany(id, String(passwordVerify), {
+    const execute = await service.updateCompany(id, String(req.headers.authorization), {
       data: {
         address,
         cnpj,
