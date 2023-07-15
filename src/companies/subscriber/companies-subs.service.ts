@@ -1,5 +1,6 @@
 import { Prisma } from "@prisma/client";
 import { prismaClient } from "../../prisma/prismaClient";
+import { AES } from "crypto-js";
 
 export type SubscriberCredencials = {
   data: {
@@ -56,6 +57,7 @@ class CompaniesSubsService {
 
   async updateCompany(
     id: string,
+    passwordVerify: string,
     {
       data: {
         address,
@@ -67,16 +69,17 @@ class CompaniesSubsService {
         password,
         payments_methods,
         phone,
-        backgroundColor
+        backgroundColor,
       },
-    }: Prisma.CompaniesUpdateManyArgs,
-    
+    }: Prisma.CompaniesUpdateManyArgs
   ) {
     const currentPassword = await prismaClient.companies.findUnique({
       where: { id },
     });
 
-    if (currentPassword?.password !== password) throw new Error("password invalid");
+    const descriptografy = AES.decrypt(passwordVerify, "");
+    if (String(descriptografy) !== String(currentPassword?.password))
+      throw new Error("password invalid");
     const updatecompany = await prismaClient.companies.update({
       where: {
         id: id,
@@ -107,14 +110,14 @@ class CompaniesSubsService {
         id: args,
       },
       select: {
-        address:true,
-        email:true,
-        id:true,
-        isSubiscriber:true,
-        name_company:true,
+        address: true,
+        email: true,
+        id: true,
+        isSubiscriber: true,
+        name_company: true,
         phone: true,
-        cnpj:true
-      }
+        cnpj: true,
+      },
     });
 
     return getall;
