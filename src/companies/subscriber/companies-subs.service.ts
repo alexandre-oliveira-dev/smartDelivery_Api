@@ -119,6 +119,7 @@ class CompaniesSubsService {
         name_company: true,
         phone: true,
         cnpj: true,
+        payments_methods: true,
       },
     });
 
