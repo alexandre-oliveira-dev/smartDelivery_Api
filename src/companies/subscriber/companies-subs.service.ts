@@ -72,6 +72,11 @@ class CompaniesSubsService {
     }: Prisma.CompaniesUpdateManyArgs,
     
   ) {
+    const currentPassword = await prismaClient.companies.findUnique({
+      where: { id },
+    });
+
+    if (currentPassword?.password !== password) throw new Error("password invalid");
     const updatecompany = await prismaClient.companies.update({
       where: {
         id: id,
@@ -101,6 +106,15 @@ class CompaniesSubsService {
       where: {
         id: args,
       },
+      select: {
+        address:true,
+        email:true,
+        id:true,
+        isSubiscriber:true,
+        name_company:true,
+        phone: true,
+        cnpj:true
+      }
     });
 
     return getall;

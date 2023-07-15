@@ -42,6 +42,9 @@ class CompaniesSubsResolver {
         imgProfile
       },
     });
+     if (!execute) {
+       return res.end().status(500);
+     }
     return res.json().status(200);
   }
 
