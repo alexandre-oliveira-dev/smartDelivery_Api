@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { CompaniesSubsService, SubscriberCredencials } from "./companies-subs.service";
+import { Prisma } from "@prisma/client";
 
 const service = new CompaniesSubsService();
 
@@ -24,8 +25,18 @@ class CompaniesSubsResolver {
   }
 
   async updateCompanie(req: Request, res: Response) {
-    const { address, cnpj, email, name_company, password, payments_methods, phone, isSubiscriber,backgroundColor,imgProfile } =
-      req.body;
+    const {
+      address,
+      cnpj,
+      email,
+      name_company,
+      password,
+      payments_methods,
+      phone,
+      isSubiscriber,
+      backgroundColor,
+      imgProfile,
+    } = req.body;
     const { id } = req.params;
 
     const execute = await service.updateCompany(id, String(req.headers.authorization), {
@@ -42,14 +53,19 @@ class CompaniesSubsResolver {
         imgProfile,
       },
     });
-     if (!execute) {
-       return res.end().status(500);
-     }
+    if (!execute) {
+      return res.end().status(500);
+    }
     return res.json().status(200);
   }
 
   async getAll(req: Request, res: Response) {
     const execute = await service.getAll();
+    return res.json(execute);
+  }
+  async getByName(req: Request, res: Response) {
+    const { name_company } = req.params;
+    const execute = await service.getByNameCompany(name_company);
     return res.json(execute);
   }
   async getAllForArgs(req: Request, res: Response) {

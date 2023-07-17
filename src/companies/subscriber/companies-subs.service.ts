@@ -106,6 +106,26 @@ class CompaniesSubsService {
     const getall = await prismaClient.companies.findMany();
     return getall;
   }
+  async getByNameCompany(name_company: string) {
+    const getByname = await prismaClient.companies.findFirst({
+      where: {
+        name_company,
+      },
+      select: {
+        address: true,
+        backgroundColor: true,
+        cnpj: true,
+        email: true,
+        id: true,
+        imgProfile: true,
+        Menu: true,
+        name_company: true,
+        payments_methods: true,
+        phone: true,
+      },
+    });
+    return getByname;
+  }
   async getForArgs(args: string) {
     const getall = await prismaClient.companies.findUnique({
       where: {
