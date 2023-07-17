@@ -107,10 +107,9 @@ class CompaniesSubsService {
     return getall;
   }
   async getByNameCompany(name_company: string) {
-    const parseString = name_company.toLowerCase();
     const getByname = await prismaClient.companies.findFirst({
       where: {
-        name_company: parseString,
+        name_company,
       },
       select: {
         address: true,
