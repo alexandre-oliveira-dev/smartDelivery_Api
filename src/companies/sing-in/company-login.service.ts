@@ -1,3 +1,4 @@
+import { AES } from "crypto-js";
 import { prismaClient } from "../../prisma/prismaClient";
 
 type SinginCredencials = {
@@ -7,10 +8,12 @@ type SinginCredencials = {
 
 class SinginCompanyService {
   async singin({ email, password }: SinginCredencials) {
+    const decryptedPassword = AES.decrypt(password, "").toString(CryptoJS.enc.Utf8);
+
     const isUser = await prismaClient.companies.findFirst({
       where: {
         email: email,
-        password: password,
+        password: decryptedPassword,
       },
     });
     if (!isUser) {
