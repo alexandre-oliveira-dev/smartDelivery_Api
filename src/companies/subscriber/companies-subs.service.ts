@@ -107,9 +107,9 @@ class CompaniesSubsService {
     return getall;
   }
   async getByNameCompany(name_company: string) {
-    const getByname = await prismaClient.companies.findFirst({
+    const getByname = await prismaClient.companies.findMany({
       where: {
-        name_company,
+        name_company: { equals: name_company },
       },
       select: {
         address: true,

@@ -64,8 +64,8 @@ class CompaniesSubsResolver {
     return res.json(execute);
   }
   async getByName(req: Request, res: Response) {
-    const { name_company } = req.params;
-    const execute = await service.getByNameCompany(name_company);
+    const { name_company } = req.query;
+    const execute = await service.getByNameCompany(String(name_company));
     return res.json(execute);
   }
   async getAllForArgs(req: Request, res: Response) {

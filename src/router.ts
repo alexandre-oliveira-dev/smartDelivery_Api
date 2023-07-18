@@ -11,7 +11,7 @@ route.post("/create", new CompaniesSubsResolver().subscriber);
 route.put("/update/:id", new CompaniesSubsResolver().updateCompanie);
 route.get("/findall", new CompaniesSubsResolver().getAll);
 route.get("/find/:args", new CompaniesSubsResolver().getAllForArgs);
-route.get("/findbyname/:args", new CompaniesSubsResolver().getByName);
+route.get("/findbyname", new CompaniesSubsResolver().getByName);
 route.delete("/remove/:id", new CompaniesSubsResolver().removeCompanie);
 route.post('/singin', new SinginCompanyResolver().login)
 route.delete('/singout/:id', new SinginCompanyResolver().logout)
