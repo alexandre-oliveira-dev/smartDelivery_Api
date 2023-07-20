@@ -62,7 +62,7 @@ model Orders {
   amount         String
   payment_method String
   status         String
-  order          String[]
+  order          Json[]
   amoutMoney     String
   address        String
   created_at     DateTime  @default(now())
