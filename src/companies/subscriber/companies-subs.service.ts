@@ -84,10 +84,10 @@ class CompaniesSubsService {
 
     const UPDATE_AUTHORIZATION = process.env.UPDATE_AUTHORIZATION;
 
-    if (
-      decryptedString !== String(currentPassword?.password) ||
-      UPDATE_AUTHORIZATION !== passwordVerify
-    )
+    if (decryptedString && decryptedString !== String(currentPassword?.password))
+      throw new Error("password invalid");
+
+    if (passwordVerify && UPDATE_AUTHORIZATION !== passwordVerify)
       throw new Error("password invalid");
 
     const updatecompany = await prismaClient.companies.update({
