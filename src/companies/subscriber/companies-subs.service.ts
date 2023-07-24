@@ -1,3 +1,4 @@
+require("dotenv/config");
 import { Prisma } from "@prisma/client";
 import { prismaClient } from "../../prisma/prismaClient";
 import { AES } from "crypto-js";
@@ -81,7 +82,12 @@ class CompaniesSubsService {
     const decryptedBytes = AES.decrypt(passwordVerify, "");
     const decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
 
-    if (decryptedString !== String(currentPassword?.password)) throw new Error("password invalid");
+    const UPDATE_AUTHORIZATION = process.env.UPDATE_AUTHORIZATION;
+    
+
+    if (decryptedString !== String(currentPassword?.password) || !UPDATE_AUTHORIZATION)
+      throw new Error("password invalid");
+
     const updatecompany = await prismaClient.companies.update({
       where: {
         id: id,
