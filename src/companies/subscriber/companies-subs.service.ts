@@ -34,7 +34,8 @@ class CompaniesSubsService {
   }: SubscriberCredencials) {
     const findCompanie = await prismaClient.companies.findFirst({
       where: {
-        cnpj: cnpj,
+        cnpj,
+        email
       },
     });
 
@@ -59,7 +60,7 @@ class CompaniesSubsService {
 
   async updateCompany(
     id: string,
-    passwordVerify: string,
+    authorization: string,
     {
       data: {
         address,
@@ -79,35 +80,53 @@ class CompaniesSubsService {
       where: { id },
     });
 
-    const decryptedBytes = AES.decrypt(passwordVerify, "");
+    const decryptedBytes = AES.decrypt(authorization, "");
     const decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
 
     const UPDATE_AUTHORIZATION = process.env.UPDATE_AUTHORIZATION;
-
-    if (decryptedString && decryptedString !== String(currentPassword?.password))
+    
+    if (decryptedString === String(currentPassword?.password)) {
+      const updatecompany = await prismaClient.companies.update({
+        where: {
+          id: id,
+        },
+        data: {
+          address,
+          cnpj,
+          email,
+          imgProfile,
+          backgroundColor,
+          isSubiscriber,
+          name_company,
+          password,
+          payments_methods,
+          phone,
+        },
+      });
+      return updatecompany;
+    } else if (UPDATE_AUTHORIZATION === authorization) {
+      const updatecompany = await prismaClient.companies.update({
+        where: {
+          id: id,
+        },
+        data: {
+          address,
+          cnpj,
+          email,
+          imgProfile,
+          backgroundColor,
+          isSubiscriber,
+          name_company,
+          password,
+          payments_methods,
+          phone,
+        },
+      });
+      return updatecompany;
+    } else {
       throw new Error("password invalid");
+    }
 
-    if (passwordVerify && UPDATE_AUTHORIZATION !== passwordVerify)
-      throw new Error("password invalid");
-
-    const updatecompany = await prismaClient.companies.update({
-      where: {
-        id: id,
-      },
-      data: {
-        address,
-        cnpj,
-        email,
-        imgProfile,
-        backgroundColor,
-        isSubiscriber,
-        name_company,
-        password,
-        payments_methods,
-        phone,
-      },
-    });
-    return updatecompany;
   }
 
   async getAll() {

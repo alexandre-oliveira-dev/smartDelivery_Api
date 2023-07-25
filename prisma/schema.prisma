@@ -22,6 +22,7 @@ model Companies {
   email            String
   password         String
   address          String
+  pixKey           String?
 
   created_at DateTime          @default(now())
   Menu       MenuOfCompanies[]
