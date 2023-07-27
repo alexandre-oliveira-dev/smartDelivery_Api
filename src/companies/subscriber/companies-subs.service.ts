@@ -149,6 +149,7 @@ class CompaniesSubsService {
         name_company: true,
         payments_methods: true,
         phone: true,
+        isSubiscriber: true,
       },
     });
     return getByname;
