@@ -9,12 +9,14 @@
     "express-async-errors": "^3.1.1",
     "nodemon": "^2.0.22",
     "sucrase": "^3.32.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "prisma": "^4.10.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/crypto-js": "^4.1.1",
-    "crypto-js": "^4.1.1"
+    "crypto-js": "^4.1.1",
+    "@prisma/client": "^4.10.1"
   },
   "scripts": {
     "dev": "nodemon src/index.ts"
