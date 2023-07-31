@@ -1,6 +1,4 @@
-[submodule "src/smartDelivery_database"]
-	path = src/smartDelivery_database
-	url = https://github.com/alexandre-oliveira-dev/smartDelivery_database.git
+
 [submodule "smartDelivery_database"]
 	path = smartDelivery_database
 	url = https://github.com/alexandre-oliveira-dev/smartDelivery_database.git
