@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../../smartDelivery_database/node_modules/@prisma/client";
 import { prismaClient } from "../prisma/prismaClient";
 import { OrdersStatus } from "../../types/ordersStatus";
 
@@ -12,6 +12,8 @@ class OrdersService {
     order,
     amoutMoney,
     address,
+    paymentVoucher,
+    pixType,
   }: Prisma.OrdersCreateManyInput) {
     const createMany = await prismaClient.orders.createMany({
       data: {
@@ -23,6 +25,8 @@ class OrdersService {
         order,
         amoutMoney,
         address,
+        paymentVoucher,
+        pixType,
       },
     });
     return createMany;

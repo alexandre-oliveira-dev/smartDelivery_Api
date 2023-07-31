@@ -1,5 +1,5 @@
 require("dotenv/config");
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../../../smartDelivery_database/node_modules/@prisma/client";
 import { prismaClient } from "../../prisma/prismaClient";
 import { AES } from "crypto-js";
 import CryptoJS from "crypto-js";

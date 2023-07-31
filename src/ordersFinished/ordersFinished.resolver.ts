@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { OrdersFinished } from "./ordersFinished.service";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../../smartDelivery_database/node_modules/@prisma/client";
 
 const service = new OrdersFinished();
 

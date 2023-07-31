@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma } from "../../smartDelivery_database/node_modules/@prisma/client";
 import { prismaClient } from "../prisma/prismaClient";
 
 class OrdersFinished {
@@ -32,6 +32,5 @@ class OrdersFinished {
     });
     return find;
   }
-
 }
 export { OrdersFinished };
