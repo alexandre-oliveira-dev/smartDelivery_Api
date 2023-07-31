@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { CompaniesSubsService, SubscriberCredencials } from "./companies-subs.service";
-import { Prisma } from "../../smartDelivery_database/node_modules/@prisma/client";
 
 const service = new CompaniesSubsService();
 
