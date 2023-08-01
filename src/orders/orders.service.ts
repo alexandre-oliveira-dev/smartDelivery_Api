@@ -1,6 +1,6 @@
-import { Prisma } from "../../../smartDelivery_database/node_modules/@prisma/client";
 import { prismaClient } from "../prisma/prismaClient";
 import { OrdersStatus } from "../../types/ordersStatus";
+import { Prisma } from "@prisma/client";
 
 class OrdersService {
   async create({

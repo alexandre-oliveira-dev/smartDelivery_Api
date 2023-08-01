@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { MenuService } from "./menu.service";
-import { Prisma } from "../../../../smartDelivery_database/node_modules/@prisma/client";
+import { Prisma } from "@prisma/client";
 
 const service = new MenuService();
 
