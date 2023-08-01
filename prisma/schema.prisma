@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Companies {
+  id               String            @id @unique @default(uuid())
+  name_company     String
+  cnpj             String?
+  payments_methods String[]
+  imgProfile       String?
+  isSubiscriber    Boolean           @default(false)
+  phone            String
+  email            String
+  password         String
+  address          String
+  created_at       DateTime          @default(now())
+  backgroundColor  String?
+  pixKey           String?
+  Menu             MenuOfCompanies[]
+  Orders           Orders[]
+
+  @@map("companies")
+}
+
+model MenuOfCompanies {
+  id            String    @id @unique @default(uuid())
+  title         String
+  categoria     String?
+  price         String
+  weight        String?
+  amount        String?
+  companiesId   String
+  created_at    DateTime  @default(now())
+  description   String
+  dataCompanies Companies @relation(fields: [companiesId], references: [id], onDelete: Cascade)
+
+  @@map("menuofcompanies")
+}
+
+model Clients {
+  id         String   @id @unique @default(uuid())
+  name       String
+  email      String
+  password   String
+  phone      Int
+  created_at DateTime @default(now())
+  Orders     Orders[]
+
+  @@map("clients")
+}
+
+model Orders {
+  id             String    @id @unique @default(uuid())
+  amount         String
+  payment_method String
+  created_at     DateTime  @default(now())
+  companiesId    String
+  clientsId      String
+  address        String
+  amoutMoney     String
+  status         String
+  order          Json[]
+  paymentVoucher String?
+  pixType        String?
+  client         Clients   @relation(fields: [clientsId], references: [id], onDelete: Cascade)
+  dataCompanies  Companies @relation(fields: [companiesId], references: [id], onDelete: Cascade)
+
+  @@map("orders")
+}
+
+model Session {
+  id              String   @id @unique @default(uuid())
+  email           String
+  name_company    String?
+  companyId       String?
+  backgroundColor String?
+  imgProfile      String?
+  created_at      DateTime @default(now())
+}
+
+model OrdersFinished {
+  id           String   @id @unique @default(uuid())
+  date         String
+  amountOrders Int
+  amountvalue  Int
+  companyId    String
+  created_at   DateTime @default(now())
+}
