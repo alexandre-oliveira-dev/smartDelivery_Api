@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { CompaniesSubsResolver } from "./companies/subscriber/companies-subs.resolver";
-import { SinginCompanyResolver } from "./companies/sing-in/company-login.resolver";
-import { MenuResolver } from "./companies/menu/menu.resolver";
+import { CompaniesSubsResolver } from "./companys/subscriberCompanys/companies-subs.resolver";
+import { SinginCompanyResolver } from "./companys/sing-inCompanys/company-login.resolver";
+import { MenuResolver } from "./companys/menuCompanys/menu.resolver";
 import { OrdersResolver } from "./orders/orders.resolver";
-import { OrdersFinishedResolver } from "./ordersFinished/ordersFinished.resolver";
+import { OrdersFinishedResolver } from "./finishedOrders/ordersFinished.resolver";
 
 export const route = Router();
 
