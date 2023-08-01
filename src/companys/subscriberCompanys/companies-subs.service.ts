@@ -35,7 +35,7 @@ class CompaniesSubsService {
     const findCompanie = await prismaClient.companies.findFirst({
       where: {
         cnpj,
-        email
+        email,
       },
     });
 
@@ -84,7 +84,7 @@ class CompaniesSubsService {
     const decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
 
     const UPDATE_AUTHORIZATION = process.env.UPDATE_AUTHORIZATION;
-    
+
     if (decryptedString === String(currentPassword?.password)) {
       const updatecompany = await prismaClient.companies.update({
         where: {
@@ -126,7 +126,6 @@ class CompaniesSubsService {
     } else {
       throw new Error("password invalid");
     }
-
   }
 
   async getAll() {
@@ -150,6 +149,8 @@ class CompaniesSubsService {
         payments_methods: true,
         phone: true,
         isSubiscriber: true,
+        pixKey: true,
+        pixType: true,
       },
     });
     return getByname;
@@ -168,6 +169,8 @@ class CompaniesSubsService {
         phone: true,
         cnpj: true,
         payments_methods: true,
+        pixKey: true,
+        pixType: true,
       },
     });
 

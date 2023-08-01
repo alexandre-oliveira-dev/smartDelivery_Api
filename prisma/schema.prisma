@@ -21,6 +21,7 @@ model Companies {
   created_at       DateTime          @default(now())
   backgroundColor  String?
   pixKey           String?
+  pixType          String?
   Menu             MenuOfCompanies[]
   Orders           Orders[]
 
@@ -65,7 +66,6 @@ model Orders {
   status         String
   order          Json[]
   paymentVoucher String?
-  pixType        String?
   client         Clients   @relation(fields: [clientsId], references: [id], onDelete: Cascade)
   dataCompanies  Companies @relation(fields: [companiesId], references: [id], onDelete: Cascade)
 
