@@ -47,7 +47,7 @@ model Clients {
   id         String   @id @unique @default(uuid())
   name       String
   email      String
-  phone      Int
+  phone      String
   created_at DateTime @default(now())
   Orders     Orders[]
 
