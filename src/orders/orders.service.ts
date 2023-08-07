@@ -14,7 +14,7 @@ class OrdersService {
     address,
     paymentVoucher,
   }: Prisma.OrdersCreateManyInput) {
-    const createMany = await prismaClient.orders.createMany({
+    const createMany = await prismaClient.orders.create({
       data: {
         amount,
         clientsId,
@@ -25,6 +25,9 @@ class OrdersService {
         amoutMoney,
         address,
         paymentVoucher,
+      },
+      select: {
+        id: true,
       },
     });
     return createMany;
@@ -57,10 +60,13 @@ class OrdersService {
     return updateMany;
   }
 
-  async findOrder(companiesId: string) {
+  async findOrder(companiesId: string,id:string) {
     const find = await prismaClient.orders.findMany({
       where: {
-        companiesId,
+        OR: [
+          { companiesId },
+          {id}
+       ]
       },
       include: {
         client: {

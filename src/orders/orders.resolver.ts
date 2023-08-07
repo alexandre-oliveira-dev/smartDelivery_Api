@@ -27,7 +27,7 @@ class OrdersResolver {
       amoutMoney,
       address,
     });
-    return res.json(create);
+    return res.json(create).status(200);
   }
 
   async update(req: Request, res: Response) {
@@ -43,8 +43,8 @@ class OrdersResolver {
   }
 
   async findOrder(req: Request, res: Response) {
-    const { companiesId } = req.query;
-    const find = await service.findOrder(String(companiesId));
+    const { companiesId,id } = req.query;
+    const find = await service.findOrder(String(companiesId), String(id));
     return res.json(find);
   }
   async findAllOrdersFinished(req: Request, res: Response) {
