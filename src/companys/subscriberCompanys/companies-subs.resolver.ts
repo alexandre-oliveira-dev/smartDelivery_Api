@@ -6,7 +6,7 @@ const service = new CompaniesSubsService();
 class CompaniesSubsResolver {
   async subscriber(req: Request, res: Response) {
     const {
-      data: { address, cnpj, email, name_company, password, payments_methods, phone },
+      data: { address, cnpj, email, name_company, password, payments_methods, phone,closingTime,daysOfWeeks,openingTime },
     }: SubscriberCredencials = req.body;
 
     const execute = await service.subscriber({
@@ -18,6 +18,9 @@ class CompaniesSubsResolver {
         password,
         payments_methods,
         phone,
+        closingTime,
+        daysOfWeeks,
+        openingTime
       },
     });
     return res.json(execute).status(200);
@@ -35,6 +38,9 @@ class CompaniesSubsResolver {
       isSubiscriber,
       backgroundColor,
       imgProfile,
+      closingTime,
+      daysOfWeeks,
+      openingTime,
     } = req.body;
     const { id } = req.params;
 
@@ -50,6 +56,9 @@ class CompaniesSubsResolver {
         isSubiscriber,
         backgroundColor,
         imgProfile,
+        closingTime,
+        daysOfWeeks,
+        openingTime,
       },
     });
     if (!execute) {

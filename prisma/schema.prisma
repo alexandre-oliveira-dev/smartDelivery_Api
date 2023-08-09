@@ -24,6 +24,7 @@ model Companies {
   pixType          String?
   closingTime      String
   openingTime      String
+  daysOfWeeks      String[]
   Menu             MenuOfCompanies[]
   Orders           Orders[]
 

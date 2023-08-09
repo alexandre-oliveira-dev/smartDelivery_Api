@@ -15,6 +15,9 @@ export type SubscriberCredencials = {
     password: string;
     payments_methods?: string;
     phone: string;
+    closingTime: string;
+    openingTime: string;
+    daysOfWeeks: string[];
   };
 };
 
@@ -30,6 +33,9 @@ class CompaniesSubsService {
       password,
       payments_methods,
       phone,
+      closingTime,
+      daysOfWeeks,
+      openingTime,
     },
   }: SubscriberCredencials) {
     const findCompanie = await prismaClient.companies.findFirst({
@@ -53,6 +59,9 @@ class CompaniesSubsService {
         imgProfile,
         isSubiscriber,
         payments_methods,
+        closingTime,
+        openingTime,
+        daysOfWeeks,
       },
     });
     return execute;
@@ -73,6 +82,9 @@ class CompaniesSubsService {
         payments_methods,
         phone,
         backgroundColor,
+        closingTime,
+        daysOfWeeks,
+        openingTime,
       },
     }: Prisma.CompaniesUpdateManyArgs
   ) {
@@ -101,6 +113,9 @@ class CompaniesSubsService {
           password,
           payments_methods,
           phone,
+          openingTime,
+          daysOfWeeks,
+          closingTime,
         },
       });
       return updatecompany;
@@ -120,6 +135,9 @@ class CompaniesSubsService {
           password,
           payments_methods,
           phone,
+          openingTime,
+          daysOfWeeks,
+          closingTime,
         },
       });
       return updatecompany;
@@ -151,6 +169,9 @@ class CompaniesSubsService {
         isSubiscriber: true,
         pixKey: true,
         pixType: true,
+        openingTime: true,
+        daysOfWeeks: true,
+        closingTime: true,
       },
     });
     return getByname;
@@ -171,6 +192,9 @@ class CompaniesSubsService {
         payments_methods: true,
         pixKey: true,
         pixType: true,
+        openingTime: true,
+        daysOfWeeks: true,
+        closingTime: true,
       },
     });
 
