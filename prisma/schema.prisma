@@ -22,6 +22,8 @@ model Companies {
   backgroundColor  String?
   pixKey           String?
   pixType          String?
+  closingTime      String
+  openingTime      String
   Menu             MenuOfCompanies[]
   Orders           Orders[]
 
