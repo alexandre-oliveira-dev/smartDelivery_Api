@@ -33,9 +33,7 @@ class CompaniesSubsService {
       password,
       payments_methods,
       phone,
-      closingTime,
       daysOfWeeks,
-      openingTime,
     },
   }: SubscriberCredencials) {
     const findCompanie = await prismaClient.companies.findFirst({
@@ -59,9 +57,7 @@ class CompaniesSubsService {
         imgProfile,
         isSubiscriber,
         payments_methods,
-        closingTime,
-        openingTime,
-        daysOfWeeks,
+            daysOfWeeks,
       },
     });
     return execute;
@@ -82,10 +78,8 @@ class CompaniesSubsService {
         payments_methods,
         phone,
         backgroundColor,
-        closingTime,
-        daysOfWeeks,
-        openingTime,
-      },
+          daysOfWeeks,
+        },
     }: Prisma.CompaniesUpdateManyArgs
   ) {
     const currentPassword = await prismaClient.companies.findUnique({
@@ -113,10 +107,8 @@ class CompaniesSubsService {
           password,
           payments_methods,
           phone,
-          openingTime,
-          daysOfWeeks,
-          closingTime,
-        },
+              daysOfWeeks,
+            },
       });
       return updatecompany;
     } else if (UPDATE_AUTHORIZATION === authorization) {
@@ -135,10 +127,8 @@ class CompaniesSubsService {
           password,
           payments_methods,
           phone,
-          openingTime,
-          daysOfWeeks,
-          closingTime,
-        },
+              daysOfWeeks,
+            },
       });
       return updatecompany;
     } else {
@@ -169,9 +159,7 @@ class CompaniesSubsService {
         isSubiscriber: true,
         pixKey: true,
         pixType: true,
-        openingTime: true,
         daysOfWeeks: true,
-        closingTime: true,
       },
     });
     return getByname;
@@ -192,9 +180,7 @@ class CompaniesSubsService {
         payments_methods: true,
         pixKey: true,
         pixType: true,
-        openingTime: true,
         daysOfWeeks: true,
-        closingTime: true,
       },
     });
 

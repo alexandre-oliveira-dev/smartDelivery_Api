@@ -22,9 +22,7 @@ model Companies {
   backgroundColor  String?
   pixKey           String?
   pixType          String?
-  closingTime      String
-  openingTime      String
-  daysOfWeeks      String[]
+  daysOfWeeks      Json[]
   Menu             MenuOfCompanies[]
   Orders           Orders[]
 

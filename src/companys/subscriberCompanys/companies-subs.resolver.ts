@@ -38,9 +38,7 @@ class CompaniesSubsResolver {
       isSubiscriber,
       backgroundColor,
       imgProfile,
-      closingTime,
       daysOfWeeks,
-      openingTime,
     } = req.body;
     const { id } = req.params;
 
@@ -56,9 +54,7 @@ class CompaniesSubsResolver {
         isSubiscriber,
         backgroundColor,
         imgProfile,
-        closingTime,
         daysOfWeeks,
-        openingTime,
       },
     });
     if (!execute) {
