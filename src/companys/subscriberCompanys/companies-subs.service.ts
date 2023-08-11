@@ -57,7 +57,7 @@ class CompaniesSubsService {
         imgProfile,
         isSubiscriber,
         payments_methods,
-            daysOfWeeks,
+        daysOfWeeks,
       },
     });
     return execute;
@@ -78,8 +78,10 @@ class CompaniesSubsService {
         payments_methods,
         phone,
         backgroundColor,
-          daysOfWeeks,
-        },
+        daysOfWeeks,
+        pixKey,
+        pixType,
+      },
     }: Prisma.CompaniesUpdateManyArgs
   ) {
     const currentPassword = await prismaClient.companies.findUnique({
@@ -107,8 +109,10 @@ class CompaniesSubsService {
           password,
           payments_methods,
           phone,
-              daysOfWeeks,
-            },
+          daysOfWeeks,
+          pixKey,
+          pixType,
+        },
       });
       return updatecompany;
     } else if (UPDATE_AUTHORIZATION === authorization) {
@@ -127,8 +131,10 @@ class CompaniesSubsService {
           password,
           payments_methods,
           phone,
-              daysOfWeeks,
-            },
+          daysOfWeeks,
+          pixKey,
+          pixType,
+        },
       });
       return updatecompany;
     } else {

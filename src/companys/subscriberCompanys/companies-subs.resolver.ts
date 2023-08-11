@@ -39,6 +39,8 @@ class CompaniesSubsResolver {
       backgroundColor,
       imgProfile,
       daysOfWeeks,
+      pixKey,
+      pixType,
     } = req.body;
     const { id } = req.params;
 
@@ -55,6 +57,8 @@ class CompaniesSubsResolver {
         backgroundColor,
         imgProfile,
         daysOfWeeks,
+        pixKey,
+        pixType,
       },
     });
     if (!execute) {
