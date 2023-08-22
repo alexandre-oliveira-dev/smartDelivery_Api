@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
-import { prismaClient } from "../../prisma/prismaClient";
+import { prismaClient } from "../prisma/prismaClient";
 
 class MenuService {
   async create({

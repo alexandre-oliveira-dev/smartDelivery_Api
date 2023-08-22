@@ -17,7 +17,7 @@ class OrdersResolver {
       address,
     }: Prisma.OrdersCreateManyInput = req.body;
 
-    const create = await service.create({
+    const create = await service.createOrder({
       amount,
       clientsId,
       companiesId,
@@ -37,20 +37,21 @@ class OrdersResolver {
     const update = await service.updateOrder(id, status);
     return res.json(update);
   }
-  async updateMany(req: Request, res: Response) {
-    await service.updateManyByStatus();
+  async updateAllOrdersByStatus(req: Request, res: Response) {
+    const { companiesId } = req.params;
+    await service.updateAllOrdersByStatus(companiesId as unknown as Prisma.OrdersUpdateManyArgs);
     return res.json().status(200);
   }
 
   async findOrder(req: Request, res: Response) {
-    const { companiesId,id } = req.query;
-    const find = await service.findOrder(String(companiesId), String(id));
+    const { companiesId, id } = req.query;
+    const find = await service.findOrders(String(companiesId), String(id));
     return res.json(find);
   }
   async findAllOrdersFinished(req: Request, res: Response) {
-    const { status, companiesId } = req.query;
+    const { companiesId } = req.query;
 
-    const find = await service.findAllOrdersFinished(status as any, String(companiesId));
+    const find = await service.findAllOrdersFinished(String(companiesId));
     return res.json({ ...find, total: find.length });
   }
   async del(req: Request, res: Response) {

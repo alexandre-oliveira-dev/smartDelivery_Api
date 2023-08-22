@@ -1,9 +1,8 @@
 import { prismaClient } from "../prisma/prismaClient";
-import { OrdersStatus } from "../../types/ordersStatus";
-import { Prisma } from "@prisma/client";
+import { OrdersStatus, Prisma } from "@prisma/client";
 
 class OrdersService {
-  async create({
+  async createOrder({
     amount,
     clientsId,
     companiesId,
@@ -33,7 +32,7 @@ class OrdersService {
     return createMany;
   }
 
-  async updateOrder(id: string, status: string) {
+  async updateOrder(id: string, status: OrdersStatus) {
     const update = prismaClient.orders.update({
       where: {
         id,
@@ -48,25 +47,23 @@ class OrdersService {
     return update;
   }
 
-  async updateManyByStatus() {
+  async updateAllOrdersByStatus(args: Prisma.OrdersUpdateManyArgs) {
     const updateMany = prismaClient.orders.updateMany({
       where: {
-        status: "entrega",
+        companiesId: args.data?.companiesId as string,
+        status: OrdersStatus.entrega,
       },
       data: {
-        status: "finalizado",
+        status: OrdersStatus.finalizado,
       },
     });
     return updateMany;
   }
 
-  async findOrder(companiesId: string,id:string) {
+  async findOrders(companiesId: string, id: string) {
     const find = await prismaClient.orders.findMany({
       where: {
-        OR: [
-          { companiesId },
-          {id}
-       ]
+        OR: [{ companiesId }, { id }],
       },
       include: {
         client: {
@@ -82,11 +79,11 @@ class OrdersService {
     return find;
   }
 
-  async findAllOrdersFinished({ status }: OrdersStatus, companiesId: string) {
+  async findAllOrdersFinished(companiesId: string) {
     const allOrdersFinished = await prismaClient.orders.findMany({
       where: {
         companiesId,
-        status: status.finalizado,
+        status: OrdersStatus.finalizado,
       },
     });
     return allOrdersFinished;

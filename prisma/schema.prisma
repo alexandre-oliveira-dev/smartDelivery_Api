@@ -7,6 +7,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum OrdersStatus {
+  finalizado
+  entrega
+  cancelado
+  preparando
+}
+
 model Companies {
   id               String            @id @unique @default(uuid())
   name_company     String
@@ -64,7 +71,7 @@ model Orders {
   clientsId      String
   address        String
   amoutMoney     String
-  status         String
+  status         OrdersStatus
   order          Json[]
   paymentVoucher String?
   client         Clients   @relation(fields: [clientsId], references: [id], onDelete: Cascade)

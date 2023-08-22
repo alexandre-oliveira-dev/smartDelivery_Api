@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { CompaniesSubsResolver } from "./companys/subscriberCompanys/companies-subs.resolver";
-import { SinginCompanyResolver } from "./companys/sing-inCompanys/company-login.resolver";
-import { MenuResolver } from "./companys/menuCompanys/menu.resolver";
-import { OrdersResolver } from "./orders/orders.resolver";
-import { OrdersFinishedResolver } from "./finishedOrders/ordersFinished.resolver";
-import { ClientsResolver } from "./clients/clients.resolver";
+import { OrdersResolver } from "./smd-orders/orders.resolver";
+import { OrdersFinishedResolver } from "./smd-finishedOrders/ordersFinished.resolver";
+import { ClientsResolver } from "./smd-clients/clients.resolver";
+import { CompaniesSubsResolver } from "./smd-companys/companies-subs.resolver";
+import { SinginCompanyResolver } from "./smd-sing-inCompanys/company-login.resolver";
+import { MenuResolver } from "./smd-menuCompanys/menu.resolver";
 
 export const route = Router();
 
@@ -30,7 +30,7 @@ route.put("/updatemenu/:id", new MenuResolver().update);
 //ORDERS
 route.post("/orders", new OrdersResolver().create);
 route.put("/orders/:id", new OrdersResolver().update);
-route.put("/allordersbystatus", new OrdersResolver().updateMany);
+route.put("/allordersbystatus", new OrdersResolver().updateAllOrdersByStatus);
 route.get("/findorders", new OrdersResolver().findOrder);
 route.get("/findallorders", new OrdersResolver().findAllOrdersFinished);
 route.delete("/deleteorder", new OrdersResolver().del);
