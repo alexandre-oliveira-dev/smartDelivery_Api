@@ -1,8 +1,8 @@
 require("dotenv/config");
 import { Prisma } from "@prisma/client";
-import { prismaClient } from "../../prisma/prismaClient";
 import { AES } from "crypto-js";
 import CryptoJS from "crypto-js";
+import { prismaClient } from "../prisma/prismaClient";
 
 export type SubscriberCredencials = {
   data: {

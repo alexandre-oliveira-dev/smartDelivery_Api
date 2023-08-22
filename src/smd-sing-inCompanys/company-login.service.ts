@@ -1,6 +1,6 @@
 import { AES } from "crypto-js";
-import { prismaClient } from "../prisma/prismaClient";
 import CryptoJS from "crypto-js";
+import { prismaClient } from "../prisma/prismaClient";
 
 type SinginCredencials = {
   email: string;
