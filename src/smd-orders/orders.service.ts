@@ -12,6 +12,7 @@ class OrdersService {
     amoutMoney,
     address,
     paymentVoucher,
+    details,
   }: Prisma.OrdersCreateManyInput) {
     const createMany = await prismaClient.orders.create({
       data: {
@@ -24,6 +25,7 @@ class OrdersService {
         amoutMoney,
         address,
         paymentVoucher,
+        details,
       },
       select: {
         id: true,

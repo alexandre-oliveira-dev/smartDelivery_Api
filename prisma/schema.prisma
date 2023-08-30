@@ -63,19 +63,20 @@ model Clients {
 }
 
 model Orders {
-  id             String    @id @unique @default(uuid())
+  id             String       @id @unique @default(uuid())
   amount         String
   payment_method String
-  created_at     DateTime  @default(now())
+  created_at     DateTime     @default(now())
   companiesId    String
   clientsId      String
   address        String
   amoutMoney     String
+  details        String?
   status         OrdersStatus
   order          Json[]
   paymentVoucher String?
-  client         Clients   @relation(fields: [clientsId], references: [id], onDelete: Cascade)
-  dataCompanies  Companies @relation(fields: [companiesId], references: [id], onDelete: Cascade)
+  client         Clients      @relation(fields: [clientsId], references: [id], onDelete: Cascade)
+  dataCompanies  Companies    @relation(fields: [companiesId], references: [id], onDelete: Cascade)
 
   @@map("orders")
 }
