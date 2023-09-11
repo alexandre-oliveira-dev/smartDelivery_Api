@@ -47,6 +47,8 @@ model MenuOfCompanies {
   companiesId   String
   created_at    DateTime  @default(now())
   description   String
+  isFollowUp    Boolean?
+  followup      Json[]
   dataCompanies Companies @relation(fields: [companiesId], references: [id], onDelete: Cascade)
 
   @@map("menuofcompanies")
