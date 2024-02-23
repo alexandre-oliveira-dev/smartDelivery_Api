@@ -10,7 +10,7 @@ class ClientsService {
     });
 
     if (alreadyExists) {
-      return alreadyExists;
+      return  new Error('This user alreadyExists')
     }
     const execute = await prismaClient.clients.create({
       data: {
