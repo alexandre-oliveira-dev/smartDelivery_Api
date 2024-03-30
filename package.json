@@ -19,6 +19,7 @@
     "@prisma/client": "^4.10.1"
   },
   "scripts": {
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "generate": "yarn prisma generate"
   }
 }
