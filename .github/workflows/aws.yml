@@ -17,7 +17,7 @@ jobs:
       run: docker build -t myapp .
 
     - name: Tag Docker image
-      run: docker tag myapp username/myapp:latest
+      run: docker tag myapp smartDelivery_Api/Dockerfile
 
     - name: Push Docker image to Docker Hub
       run: |
@@ -31,5 +31,4 @@ jobs:
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
         script: |
-          docker pull username/myapp:latest
           docker-compose -f docker-compose.yml up -d
