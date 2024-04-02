@@ -10,6 +10,7 @@ export const route = Router();
 
 route.get("/", (req,res)=> res.send('olaaaa'));
 //COMPANYS
+//
 route.post("/create", new CompaniesSubsResolver().subscriber);
 route.put("/update/:id", new CompaniesSubsResolver().updateCompanie);
 route.get("/findall", new CompaniesSubsResolver().getAll);
