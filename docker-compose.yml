@@ -1,15 +1,9 @@
 version: '3'
 services:
- 
   app:
     build: .
-    expose:
-      - 4000
     ports:
-      - "4000:4000"
+      - "5000:5000"
     env_file:
       - .env
-    working_dir: /home/node/app
-    command: npm run dev
-    
-  
+    command: yarn dev

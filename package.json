@@ -8,18 +8,18 @@
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "nodemon": "^2.0.22",
+    "npx": "^10.2.2",
+    "prisma": "^4.10.1",
     "sucrase": "^3.32.0",
-    "typescript": "^5.0.4",
-    "prisma": "^4.10.1"
+    "typescript": "^5.0.4"
   },
   "devDependencies": {
+    "@prisma/client": "^4.10.1",
     "@types/cors": "^2.8.13",
     "@types/crypto-js": "^4.1.1",
-    "crypto-js": "^4.1.1",
-    "@prisma/client": "^4.10.1"
+    "crypto-js": "^4.1.1"
   },
   "scripts": {
-    "dev": "nodemon src/index.ts",
-    "generate": "yarn prisma generate && yarn dev"
+    "dev": "yarn prisma generate && nodemon src/index.ts"
   }
 }

@@ -1,9 +1,20 @@
-FROM node:18-alpine
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
-WORKDIR /home/node/app
+# Use a imagem oficial do Node.js
+FROM node:latest
+
+# Defina o diretório de trabalho dentro do contêiner
+WORKDIR /app
+
+# Copie o arquivo package.json e o arquivo package-lock.json para o diretório de trabalho
 COPY package*.json ./
-RUN npm install
-RUN npx prisma generate
-COPY --chown=node:node . .
-EXPOSE 4000
-CMD [ "npm", "run dev" ]
+
+# Instale as dependências do projeto
+RUN npm install yarn && yarn
+
+# Copie todos os arquivos do diretório atual para o diretório de trabalho dentro do contêiner
+COPY . .
+
+# Exponha a porta em que o servidor da API está sendo executado
+EXPOSE 5000
+
+
+
