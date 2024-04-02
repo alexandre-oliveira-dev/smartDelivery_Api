@@ -20,6 +20,6 @@
   },
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "generate": "yarn prisma generate"
+    "generate": "yarn prisma generate && yarn dev"
   }
 }

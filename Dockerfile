@@ -1,13 +1,10 @@
 FROM node:18-alpine
-
-WORKDIR src/index
-COPY  package.json yarn.lock ./
-
-RUN  yarn generate
-RUN  yarn
-
-COPY  . .
-
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+WORKDIR /home/node/app
+COPY package.json ./
+RUN npm install -g yarn
+RUN yarn
+RUN npx prisma generate
+COPY --chown=node:node . .
 EXPOSE 4000
-
-CMD [ "yarn", "dev",'prisma generate' ]
+CMD [ "npm", "run dev" ]
