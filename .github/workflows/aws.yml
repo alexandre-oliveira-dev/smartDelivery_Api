@@ -14,9 +14,9 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build Docker image
-      run: docker build -t smartDelivery_Api .
+      run: docker build -t smartdeliveri_api .
 
     - name: push image
-      run:  docker push smartDelivery_Api
+      run:  docker push smartdelivery_api
 
    
