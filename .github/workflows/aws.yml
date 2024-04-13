@@ -1,22 +1,28 @@
-name: Deploy to EC2 on Aws
+name: aws deploy on ec2
 
 on:
   push:
     branches:
-      - master
+    - master
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
+  build:
+    runs-on: [ubuntu-latest]
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Build Docker image
-      run: docker build -t smartdeliveri_api .
-
-    - name: push image
-      run:  docker push smartdelivery_api
-
-   
+      - name: Checkout source
+        uses: actions/checkout@v3
+      - name: Build docker image
+        run: docker build -t alexandre-oliveira-dev/smartdelivery_api .
+      - name: Publish image to docker hub
+        run: docker push alexandre-oliveira-dev/smartdelivery_api:latest
+        
+  deploy:
+    needs: build
+    runs-on: [aws-ec2]
+    steps:
+      - name: Pull image from docker hub
+        run: docker pull alexandre-oliveira-dev/smartdelivery_api:latest
+      - name: Delete old container
+        run: docker rm -f smartdelivery_api-container
+      - name: Run docker container
+        run: docker compose -f docker-compose.yml up -d --build
