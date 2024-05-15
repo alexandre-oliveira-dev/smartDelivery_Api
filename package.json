@@ -21,6 +21,7 @@
   },
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "vercel-build": "prisma generate && echo hello"
+    "vercel-build": "prisma generate && echo hello",
+    "build": "tsc"
   }
 }
