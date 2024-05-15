@@ -1,2 +1,2 @@
-import app from '../src/index'
+import {app} from '../src/app.service'
 export default app
