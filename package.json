@@ -20,6 +20,7 @@
     "crypto-js": "^4.1.1"
   },
   "scripts": {
-    "dev": "yarn prisma generate && nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "vercel-build": "prisma generate && echo hello"
   }
 }
