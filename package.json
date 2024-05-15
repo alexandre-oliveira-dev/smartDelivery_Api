@@ -20,8 +20,7 @@
     "crypto-js": "^4.1.1"
   },
   "scripts": {
-    "dev": "nodemon src/index.ts",
-    "vercel-build": "prisma generate && echo hello",
-    "build": "tsc"
+    "dev": "nodemon api/index.ts",
+    "vercel-build": "prisma generate && echo hello"
   }
 }

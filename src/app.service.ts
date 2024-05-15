@@ -11,4 +11,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 app.use(cors());
 app.use(route);
 
+app.listen(5000, () => console.log("online"));
+
+
 
