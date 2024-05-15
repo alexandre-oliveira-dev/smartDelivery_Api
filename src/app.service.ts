@@ -10,6 +10,11 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 app.use(cors());
 app.use(route);
+app.get('/', (req, res) => {
+  res.json({
+    message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄',
+  });
+});
 
 app.listen(5000, () => console.log("online"));
 
